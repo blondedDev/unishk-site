@@ -1,0 +1,13 @@
+# the TYPO3 mirror is 675 MB of source material, never committed
+original/
+shots/
+*.zip
+
+# build output and dependencies
+web/node_modules/
+web/dist/
+web/.astro/
+# stray build output if a build is ever run from the repo root
+dist/
+
+.DS_Store

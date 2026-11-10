@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro'
+---
+<Base title="Faqja nuk u gjet" noRobots={true} crumbs={[{ label: '404', href: null }]}>
+  <div class="page-body">
+    <div class="container">
+      <div class="empty-state">
+        <strong style="font-size: var(--step-2);">404 — faqja nuk u gjet</strong>
+        <span>Adresa që kërkuat nuk ekziston ose është zhvendosur.</span>
+        <div class="cluster" style="margin-top: .5rem;">
+          <a class="btn" href="/">Kthehu në ballinë</a>
+          <a class="btn btn--ghost" href="/kerko">Kërko në faqe</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>

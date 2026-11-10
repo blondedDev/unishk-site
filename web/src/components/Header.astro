@@ -1,0 +1,138 @@
+---
+import Icon from './Icon.astro'
+
+const { nav, utility, path: current = '/' } = Astro.props
+const isCurrent = (href) => {
+  if (href === '/') return current === '/'
+  return current === href || current.startsWith(href + '/')
+}
+const rightSide = utility.social.filter((s) => s.icon !== 'mail')
+
+/* the first entry of each utility list is the menu label itself pointing at
+   "/" — drop it, and drop duplicates the two lists share */
+const serviceLinks = (() => {
+  const seen = new Set()
+  const out = []
+  for (const link of [...utility.student, ...utility.staff]) {
+    if (!link.href || link.href === '/' || seen.has(link.href)) continue
+    seen.add(link.href)
+    out.push(link)
+  }
+  out.push({ label: 'Posta elektronike', href: 'https://outlook.office.com/mail/' })
+  out.push({ label: 'Kërko në faqe', href: '/kerko' })
+  out.push({ label: 'Ankesa', href: '/universiteti/ankesa-universiteti-i-shkodres-luigj-gurakuqi' })
+  return out
+})()
+---
+<a class="skip-link" href="#main">Kalo te përmbajtja</a>
+
+<header class="site-header">
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <ul class="topbar__list">
+        <li>
+          <details class="topbar__menu">
+            <summary><Icon name="graduation" class="icon" /> Studenti</summary>
+            <ul>{utility.student.filter((l) => l.href !== '/').map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+          </details>
+        </li>
+        <li>
+          <details class="topbar__menu">
+            <summary><Icon name="users" class="icon" /> Stafi</summary>
+            <ul>{utility.staff.filter((l) => l.href !== '/').map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+          </details>
+        </li>
+        <li>
+          <a class="topbar__link" href="/universiteti/ankesa-universiteti-i-shkodres-luigj-gurakuqi">
+            <Icon name="bell" class="icon" /> Ankesa
+          </a>
+        </li>
+      </ul>
+
+      <ul class="topbar__list topbar__list--right">
+        <li><a class="topbar__icon" href="/kerko" aria-label="Kërko"><Icon name="search" /></a></li>
+        <li><a class="topbar__icon" href="https://outlook.office.com/mail/" rel="noopener" aria-label="Posta elektronike"><Icon name="mail" /></a></li>
+        {rightSide.map((s) => (
+          <li>
+            <a class="topbar__icon" href={s.href} rel="noopener" aria-label={s.label} target="_blank">
+              <Icon name={s.icon} />
+            </a>
+          </li>
+        ))}
+        <li>
+          <details class="topbar__menu">
+            <summary>SQ</summary>
+            <ul>
+              <li><a href="/" hreflang="sq" lang="sq">Shqip</a></li>
+              <li><a href="https://unishk.edu.al/en/" hreflang="en" lang="en">English</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="container masthead__inner">
+      <a class="brand" href="/">
+        <img class="brand__mark" src="/img/logo.svg" alt="" width="42" height="42" />
+        <span class="brand__text">
+          <strong>Universiteti i Shkodrës</strong>
+          <span>“Luigj Gurakuqi”</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle>
+        <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-toggle__label">Menuja</span>
+      </button>
+
+      <div class="nav-wrap" id="primary-nav" data-nav>
+        <nav class="nav" aria-label="Navigimi kryesor">
+          <ul class="nav__list">
+            {nav.map((item) => {
+              const kids = item.children.filter((c) => c.href && c.label)
+              return (
+                <li class:list={['nav__item', { 'is-current': isCurrent(item.href) }]}>
+                  <a class="nav__link" href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                  {kids.length > 0 && (
+                    <>
+                      <button class="nav__toggle" type="button" aria-expanded="false" aria-label={`Nënmenuja: ${item.label}`} data-submenu-toggle>
+                        <Icon name="chevron" />
+                      </button>
+                      <div class="nav__panel">
+                        <ul class="nav__sublist">
+                          {kids.map((k) => (
+                            <li><a href={k.href} aria-current={isCurrent(k.href) ? 'page' : undefined}>{k.label}</a></li>
+                          ))}
+                        </ul>
+                      </div>
+                    </>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+
+        <div class="nav__extra">
+          <h2>Shërbime</h2>
+          {serviceLinks.map((l) => (
+            <a href={l.href} {...(/^https?:/.test(l.href) ? { rel: 'noopener', target: '_blank' } : {})}>
+              {l.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Ndrysho temën e errët">
+        <Icon name="sun" class="icon theme-toggle__sun" />
+        <Icon name="moon" class="icon theme-toggle__moon" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-scrim" data-nav-scrim hidden></div>

@@ -1,0 +1,335 @@
+/* =========================================================================
+   UNISHK — design tokens, reset, typography, primitives
+   Brand colours are the university's own: navy #09375c, teal #037f9c.
+   ========================================================================= */
+
+@layer reset, tokens, base, layout, components, utilities;
+
+@layer tokens {
+  :root {
+    /* brand ------------------------------------------------------------ */
+    --brand-50: #eaf3fb;
+    --brand-100: #cfe3f6;
+    --brand-200: #a3c8ea;
+    --brand-300: #6ea8d8;
+    --brand-400: #3a83bf;
+    --brand-500: #175f9d;
+    --brand-600: #0d4b80;
+    --brand-700: #09375c;
+    --brand-800: #062944;
+    --brand-900: #041d31;
+
+    --accent-300: #7fd6e8;
+    --accent-400: #35b6d0;
+    --accent-500: #037f9c;
+    --accent-600: #016279;
+
+    /* neutrals --------------------------------------------------------- */
+    --ink: #0b1a26;
+    --text: #25333f;
+    --muted: #5b6b79;
+    --line: #dde5ec;
+    --line-strong: #c6d3de;
+    --surface: #ffffff;
+    --surface-2: #f5f8fb;
+    --surface-3: #eaf0f6;
+    --danger: #c4242b;
+
+    /* semantic --------------------------------------------------------- */
+    --bg: var(--surface-2);
+    --fg: var(--text);
+    --heading: var(--ink);
+    --card: var(--surface);
+    --card-border: var(--line);
+    --link: var(--brand-500);
+    --link-hover: var(--accent-500);
+    --brand: var(--brand-700);
+    --brand-contrast: #ffffff;
+
+    /* type ------------------------------------------------------------- */
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --font-display: var(--font-sans);
+
+    --step--1: clamp(0.8125rem, 0.79rem + 0.12vw, 0.875rem);
+    --step-0: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+    --step-1: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    --step-2: clamp(1.25rem, 1.13rem + 0.6vw, 1.5625rem);
+    --step-3: clamp(1.5rem, 1.28rem + 1.1vw, 2.0625rem);
+    --step-4: clamp(1.875rem, 1.45rem + 2.1vw, 3rem);
+    --step-5: clamp(2.25rem, 1.55rem + 3.4vw, 4rem);
+
+    /* space (8px base, fluid at the top end) --------------------------- */
+    --space-3xs: 0.25rem;
+    --space-2xs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-s: 1rem;
+    --space-m: 1.5rem;
+    --space-l: 2rem;
+    --space-xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+    --space-2xl: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+
+    /* shell ------------------------------------------------------------ */
+    --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+    --container: 78rem;
+    --container-wide: 90rem;
+    --measure: 68ch;
+
+    --radius-s: 0.5rem;
+    --radius-m: 0.875rem;
+    --radius-l: 1.25rem;
+    --radius-xl: 1.75rem;
+    --radius-pill: 999px;
+
+    --shadow-1: 0 1px 2px rgb(9 55 92 / 0.06), 0 1px 3px rgb(9 55 92 / 0.08);
+    --shadow-2: 0 4px 12px -2px rgb(9 55 92 / 0.1), 0 2px 6px -2px rgb(9 55 92 / 0.08);
+    --shadow-3: 0 18px 40px -12px rgb(9 55 92 / 0.22), 0 4px 12px -4px rgb(9 55 92 / 0.12);
+
+    --ring: 0 0 0 3px color-mix(in srgb, var(--accent-400) 55%, transparent);
+    --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+    --header-h: 4.5rem;
+
+    color-scheme: light;
+  }
+
+  /* dark is opt-in through [data-theme] only — the site is light by default
+     even when the desktop is set to a dark theme ------------------------- */
+
+  :root[data-theme="dark"] {
+    --ink: #eef5fb;
+    --text: #c9d6e2;
+    --muted: #93a6b6;
+    --line: #1e2f3e;
+    --line-strong: #2b4155;
+    --surface: #0e1c28;
+    --surface-2: #0a1620;
+    --surface-3: #132636;
+    --bg: var(--surface-2);
+    --fg: var(--text);
+    --heading: var(--ink);
+    --card: #101f2c;
+    --card-border: #1d3245;
+    --link: var(--brand-300);
+    --link-hover: var(--accent-300);
+    --brand: #0b2b47;
+    --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-2: 0 4px 14px -2px rgb(0 0 0 / 0.45);
+    --shadow-3: 0 18px 40px -12px rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  html:focus-within { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  img, picture, svg, video, canvas { display: block; max-width: 100%; }
+  img, video { height: auto; }
+
+  input, button, textarea, select { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+
+  h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd { margin: 0; }
+  ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
+
+  :where(a) { color: var(--link); text-underline-offset: 0.18em; }
+  :where(a:hover) { color: var(--link-hover); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-s);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--heading);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    font-weight: 700;
+  }
+  h1 { font-size: var(--step-4); }
+  h2 { font-size: var(--step-3); }
+  h3 { font-size: var(--step-2); }
+  h4 { font-size: var(--step-1); }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent-400) 35%, transparent);
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 200;
+    translate: 0 -150%;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-pill);
+    background: var(--brand-700);
+    color: #fff;
+    font-size: var(--step--1);
+    font-weight: 600;
+    text-decoration: none;
+    transition: translate 0.2s var(--ease);
+  }
+  .skip-link:focus { translate: 0 0; color: #fff; }
+}
+
+@layer layout {
+  .container {
+    width: min(100% - (var(--gutter) * 2), var(--container));
+    margin-inline: auto;
+  }
+  .container--wide { --container: var(--container-wide); }
+
+  .section { padding-block: var(--space-2xl); }
+  .section--tight { padding-block: var(--space-xl); }
+  .section--surface { background: var(--surface); }
+  .section--tint { background: var(--surface-3); }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-xs) var(--space-m);
+    margin-block-end: var(--space-l);
+  }
+  .section-head__eyebrow {
+    display: block;
+    margin-block-end: var(--space-2xs);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-600);
+  }
+  .section-head h2 { font-size: var(--step-3); }
+  .section-head__link {
+    font-weight: 600;
+    font-size: var(--step--1);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .section-head__link::after { content: "→"; transition: translate 0.2s var(--ease); }
+  .section-head__link:hover::after { translate: 3px 0; }
+
+  .grid { display: grid; gap: var(--space-m); }
+  .grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+  .grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+  .grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+}
+
+@layer components {
+  /* buttons ---------------------------------------------------------- */
+  .btn {
+    --btn-bg: var(--brand-700);
+    --btn-fg: #fff;
+    --btn-border: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 2.875rem;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid var(--btn-border);
+    border-radius: var(--radius-pill);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease),
+      border-color 0.2s var(--ease), translate 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  .btn:hover { translate: 0 -1px; box-shadow: var(--shadow-2); color: var(--btn-fg); }
+  .btn--accent { --btn-bg: var(--accent-500); }
+  .btn--accent:hover { --btn-bg: var(--accent-600); }
+  .btn--ghost {
+    --btn-bg: transparent;
+    --btn-fg: var(--heading);
+    --btn-border: var(--line-strong);
+  }
+  .btn--ghost:hover { --btn-bg: var(--surface); }
+  .btn--light { --btn-bg: #fff; --btn-fg: var(--brand-700); }
+  .btn--onbrand {
+    --btn-bg: rgb(255 255 255 / 0.12);
+    --btn-fg: #fff;
+    --btn-border: rgb(255 255 255 / 0.45);
+    backdrop-filter: blur(6px);
+  }
+  .btn--onbrand:hover { --btn-bg: rgb(255 255 255 / 0.22); }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--accent-500) 12%, transparent);
+    color: var(--accent-600);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  :root[data-theme="dark"] .tag { color: var(--accent-300); }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-1);
+    transition: box-shadow 0.25s var(--ease), translate 0.25s var(--ease), border-color 0.25s var(--ease);
+  }
+  a.card:hover,
+  .card:hover { translate: 0 -2px; box-shadow: var(--shadow-3); border-color: var(--line-strong); }
+
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: none;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}

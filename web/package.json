@@ -1,0 +1,19 @@
+{
+  "name": "unishk-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/relativize.mjs",
+    "preview": "astro preview",
+    "convert": "node scripts/convert.mjs",
+    "check": "node scripts/convert.mjs && astro build && python3 scripts/check-links.py dist && node scripts/relativize.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.16.0"
+  },
+  "devDependencies": {
+    "cheerio": "^1.1.2"
+  }
+}

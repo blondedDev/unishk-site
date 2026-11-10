@@ -1,0 +1,200 @@
+---
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Icon from '../components/Icon.astro'
+import site from '../data/site.json'
+import '../styles/base.css'
+import '../styles/components.css'
+
+const {
+  title = '',
+  description = 'Universiteti i Shkodrës “Luigj Gurakuqi” — universitet publik në Shkodër: programe studimi, kërkim shkencor, shërbime për studentët.',
+  crumbs = [],
+  noRobots = false,
+} = Astro.props
+
+const path = Astro.url.pathname
+const fullTitle = title ? `${title} — UNISHK` : 'Universiteti i Shkodrës “Luigj Gurakuqi”'
+---
+<!doctype html>
+<html lang="sq">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {!noRobots && <link rel="canonical" href={path} />}
+    <link rel="icon" href="/img/logo.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#09375c" />
+    {noRobots && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Universiteti i Shkodrës “Luigj Gurakuqi”" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="sq_AL" />
+    <script is:inline>
+      // set the theme before first paint so there is no flash
+      try {
+        const stored = localStorage.getItem('unishk-theme')
+        if (stored === 'dark' || stored === 'light') {
+          document.documentElement.dataset.theme = stored
+        }
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <Header nav={site.nav} utility={site.utility} path={path} />
+
+    <main id="main">
+      {crumbs.length > 0 && (
+        <div class="page-head">
+          <div class="container">
+            <nav aria-label="Shtegu i navigimit">
+              <ol class="breadcrumbs">
+                <li><a href="/">Ballina</a></li>
+                {crumbs.map((c, i) => (
+                  <li>
+                    {c.href && i < crumbs.length - 1
+                      ? <a href={c.href}>{c.label}</a>
+                      : <span aria-current="page">{c.label}</span>}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </div>
+        </div>
+      )}
+      <slot />
+    </main>
+
+    <Footer />
+
+    <button class="to-top" type="button" data-to-top aria-label="Kthehu në fillim">
+      <Icon name="arrowUp" />
+    </button>
+
+    <script>
+      const root = document.documentElement
+
+      /* theme ---------------------------------------------------------- */
+      const themeBtn = document.querySelector('[data-theme-toggle]')
+      // light is the default regardless of the desktop theme; dark is opt-in
+      const currentTheme = () => root.dataset.theme || 'light'
+
+      themeBtn?.addEventListener('click', () => {
+        const next = currentTheme() === 'dark' ? 'light' : 'dark'
+        root.dataset.theme = next
+        try { localStorage.setItem('unishk-theme', next) } catch {}
+        themeBtn.setAttribute('aria-label', next === 'dark' ? 'Ndrysho temën e ndritshme' : 'Ndrysho temën e errët')
+      })
+
+      /* mobile drawer -------------------------------------------------- */
+      const toggle = document.querySelector('[data-menu-toggle]')
+      const nav = document.querySelector('[data-nav]')
+      const scrim = document.querySelector('[data-nav-scrim]')
+
+      const setMenu = (open) => {
+        if (!nav || !toggle) return
+        nav.dataset.open = String(open)
+        toggle.setAttribute('aria-expanded', String(open))
+        if (scrim) {
+          scrim.hidden = !open
+          scrim.dataset.open = String(open)
+        }
+        document.body.style.overflow = open ? 'hidden' : ''
+      }
+
+      toggle?.addEventListener('click', () =>
+        setMenu(toggle.getAttribute('aria-expanded') !== 'true'))
+      scrim?.addEventListener('click', () => setMenu(false))
+      /* topbar menus (Studenti / Stafi / language) ---------------------- */
+      const topbarMenus = [...document.querySelectorAll('.topbar__menu')]
+      const closeTopbar = () => topbarMenus.forEach((d) => { d.open = false })
+
+      topbarMenus.forEach((details) =>
+        details.addEventListener('toggle', () => {
+          if (details.open) topbarMenus.forEach((other) => {
+            if (other !== details) other.open = false
+          })
+        }),
+      )
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.topbar__menu')) closeTopbar()
+      })
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeTopbar()
+          setMenu(false)
+          document.querySelectorAll('.nav__item.is-open').forEach((li) => {
+            li.classList.remove('is-open')
+            li.querySelector('[data-submenu-toggle]')?.setAttribute('aria-expanded', 'false')
+          })
+        }
+      })
+      // a click on a plain (non-submenu) link means "take me there"
+      nav?.querySelectorAll('.nav__link').forEach((a) =>
+        a.addEventListener('click', () => { if (innerWidth < 1312) setMenu(false) }))
+
+      /* submenu accordions (mobile) ------------------------------------ */
+      document.querySelectorAll('[data-submenu-toggle]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const li = btn.closest('.nav__item')
+          const open = li.classList.contains('is-open')
+          document.querySelectorAll('.nav__item.is-open').forEach((other) => {
+            if (other !== li) {
+              other.classList.remove('is-open')
+              other.querySelector('[data-submenu-toggle]')?.setAttribute('aria-expanded', 'false')
+            }
+          })
+          li.classList.toggle('is-open', !open)
+          btn.setAttribute('aria-expanded', String(!open))
+        })
+      })
+
+      /* header shadow + back to top ------------------------------------ */
+      const header = document.querySelector('.masthead')
+      const toTop = document.querySelector('[data-to-top]')
+      const onScroll = () => {
+        const y = scrollY
+        header?.classList.toggle('is-stuck', y > 8)
+        if (toTop) toTop.dataset.visible = String(y > 700)
+      }
+      addEventListener('scroll', onScroll, { passive: true })
+      onScroll()
+      toTop?.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }))
+
+      // the footer already ends the page: get the button out of its way
+      const footer = document.querySelector('.site-footer')
+      if (footer && toTop) {
+        new IntersectionObserver(
+          ([entry]) => footer.classList.toggle('is-visible', entry.isIntersecting),
+          { threshold: 0 },
+        ).observe(footer)
+      }
+
+      /* number counters ------------------------------------------------ */
+      const counters = document.querySelectorAll('[data-count]')
+      if (counters.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const fmt = new Intl.NumberFormat('de-DE')
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue
+            const el = entry.target
+            io.unobserve(el)
+            const target = Number(el.dataset.count)
+            const start = performance.now()
+            const run = (now) => {
+              const p = Math.min(1, (now - start) / 1100)
+              const eased = 1 - Math.pow(1 - p, 3)
+              el.textContent = fmt.format(Math.round(target * eased))
+              if (p < 1) requestAnimationFrame(run)
+            }
+            requestAnimationFrame(run)
+          }
+        }, { threshold: 0.4 })
+        counters.forEach((el) => io.observe(el))
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro'
+import Icon from '../components/Icon.astro'
+
+import allPages from '../lib/pages.js'
+
+const ENTITIES = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' ', ndash: '–', mdash: '—', laquo: '«', raquo: '»' }
+const decode = (s) =>
+  s
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n))
+    .replace(/&(amp|quot|apos|lt|gt|nbsp|ndash|mdash|laquo|raquo);/g, (_, n) => ENTITIES[n])
+const strip = (html) =>
+  decode(html.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim()
+
+const index = allPages.map((p) => ({
+  title: p.title,
+  path: p.path,
+  crumb: p.crumbs.map((c) => c.label).slice(0, -1).join(' › '),
+  text: strip(p.body).slice(0, 500),
+}))
+---
+<Base title="Kërko" description="Kërkimi në faqen e Universitetit i Shkodrës “Luigj Gurakuqi”." crumbs={[{ label: 'Kërko', href: null }]}>
+  <div class="page-head">
+    <div class="container">
+      <h1>Kërko në faqe</h1>
+      <p class="page-head__lede">Kërkimi kryhet brenda faqes, pa server dhe pa gjurmim.</p>
+    </div>
+  </div>
+
+  <div class="page-body">
+    <div class="container">
+      <form class="search-form" role="search" onsubmit="return false">
+        <label class="visually-hidden" for="q">Fjala për të kërkuar</label>
+        <Icon name="search" class="icon search-form__icon" />
+        <input id="q" type="search" name="q" placeholder="Kërko programe, njoftime, dokumente…"
+          autocomplete="off" autofocus data-search-input />
+      </form>
+      <a href="/" data-site-root hidden aria-hidden="true"></a>
+      <p class="search-status" data-search-status aria-live="polite"></p>
+      <ol class="search-results" data-search-results></ol>
+    </div>
+  </div>
+
+  <script type="application/json" id="search-index" set:html={JSON.stringify(index)} />
+  <script>
+    const data = JSON.parse(document.getElementById('search-index').textContent || '[]')
+    const input = document.querySelector('[data-search-input]')
+    const list = document.querySelector('[data-search-results]')
+    const status = document.querySelector('[data-search-status]')
+
+    // `dist/` is built with page-relative paths so it also runs from disk;
+    // the sentinel anchor carries the prefix back to the site root
+    const root = document.querySelector('[data-site-root]')?.getAttribute('href') || '/'
+    const toLink = (p) => root + p.replace(/^\//, '')
+
+    const norm = (s) =>
+      s.toLowerCase()
+        .replace(/ë/g, 'e').replace(/ç/g, 'c')
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .replace(/\s+/g, ' ')
+
+    const haystack = data.map((d) => ({
+      ...d,
+      nt: norm(d.title),
+      nc: norm(d.crumb),
+      nx: norm(d.text),
+    }))
+
+    const highlight = (text, terms) => {
+      let out = text.replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]))
+      for (const t of terms) {
+        if (t.length < 3) continue
+        out = out.replace(new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<mark>$1</mark>')
+      }
+      return out
+    }
+
+    const snippet = (d, terms) => {
+      const i = terms.map((t) => norm(d.text).indexOf(t)).filter((n) => n >= 0).sort((a, b) => a - b)[0] ?? 0
+      // start on a word boundary so snippets do not open mid-word
+      const rough = Math.max(0, i - 60)
+      const from = rough === 0 ? 0 : d.text.indexOf(' ', rough) + 1 || rough
+      const raw = d.text.slice(from, from + 200)
+      return (from > 0 ? '… ' : '') + raw + (d.text.length > from + 200 ? ' …' : '')
+    }
+
+    const render = () => {
+      const q = input.value.trim()
+      if (q.length < 2) {
+        list.innerHTML = ''
+        status.textContent = q ? 'Shkruani të paktën dy shkronja.' : ''
+        return
+      }
+      const terms = norm(q).split(' ').filter(Boolean)
+      const hits = haystack
+        .map((d) => {
+          let score = 0
+          for (const t of terms) {
+            if (d.nt.includes(t)) score += 6
+            if (d.nc.includes(t)) score += 2
+            if (d.nx.includes(t)) score += 1
+          }
+          return { d, score }
+        })
+        .filter((r) => r.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 25)
+
+      status.textContent = hits.length
+        ? `${hits.length} rezultat${hits.length === 1 ? '' : 'e'} për “${q}”`
+        : `Asnjë rezultat për “${q}”.`
+
+      list.innerHTML = hits
+        .map(({ d }) => {
+          const crumb = d.crumb ? `<span class="search-result__crumb">${highlight(d.crumb, terms)}</span>` : ''
+          const text = highlight(snippet(d, terms), terms)
+          return `<li class="search-result"><a href="${toLink(d.path)}">
+            ${crumb}<span class="search-result__title">${highlight(d.title, terms)}</span>
+            <span class="search-result__text">${text}</span></a></li>`
+        })
+        .join('')
+    }
+
+    input?.addEventListener('input', render)
+    render()
+  </script>
+</Base>

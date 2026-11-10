@@ -1,0 +1,82 @@
+---
+import Icon from './Icon.astro'
+
+const year = 2026
+const quickLinkGroups = [
+  {
+    title: 'Universiteti',
+    links: [
+      { label: 'Vizioni dhe misioni', href: '/universiteti/vizioni-dhe-misioni' },
+      { label: 'Fakultetet', href: '/universiteti-luigj-gurakuqi/fakultetet' },
+      { label: 'Autoritetet drejtuese', href: '/universiteti/autoritetet-dhe-organet-drejtuese' },
+      { label: 'Dokumente / Vendime', href: '/universiteti/vendime' },
+      { label: 'Programi i transparencës', href: '/universiteti/programi-i-transparences' },
+    ],
+  },
+  {
+    title: 'Për studentët',
+    links: [
+      { label: 'Pranimet 2026–2027', href: '/universiteti/pranimet-e-studenteve-te-rinj-2026-2027' },
+      { label: 'Oraret e studimit', href: '/studentet/oraret-e-studimit' },
+      { label: 'Oraret e provimeve', href: '/studentet/oraret-e-provimeve' },
+      { label: 'Bursat e studimit', href: '/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/bursa' },
+      { label: 'Tarifat e studimit', href: '/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/tarifa-shkollimi' },
+    ],
+  },
+]
+
+const social = [
+  { label: 'Facebook', href: 'https://www.facebook.com/Universiteti.Shkoder.Luigj.Gurakuqi', icon: 'facebook' },
+  { label: 'Instagram', href: 'https://www.instagram.com/universiteti.luigj.gurakuqi/', icon: 'instagram' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/universiteti-i-shkodr%C3%ABs-luigj-gurakuqi-459933173/', icon: 'linkedin' },
+  { label: 'Email', href: 'mailto:info@unishk.edu.al', icon: 'mail' },
+]
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__main">
+      <div>
+        <a class="brand" href="/">
+          <img class="brand__mark" src="/img/logo.svg" alt="" width="46" height="46" />
+          <span class="brand__text">
+            <strong>Universiteti i Shkodrës</strong>
+            <span>“Luigj Gurakuqi”</span>
+          </span>
+        </a>
+        <p>
+          Universitet publik në Shkodër, themeluar më 1957. Gjashtë fakultete, programe në tre cikle
+          studimi dhe kërkim shkencor në shërbim të komunitetit.
+        </p>
+        <div class="footer-social">
+          {social.map((s) => (
+            <a href={s.href} aria-label={s.label} rel="noopener" target="_blank"><Icon name={s.icon} /></a>
+          ))}
+        </div>
+      </div>
+
+      {quickLinkGroups.map((group) => (
+        <div>
+          <h2>{group.title}</h2>
+          <ul>
+            {group.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="site-footer__credit">
+      Dizajn dhe zhvillim: <a href="https://sonisyla.com" rel="noopener" target="_blank">Ardison Syla</a>
+    </p>
+
+    <div class="site-footer__bottom">
+      <span>© {year} UNISHK — Të gjitha të drejtat e rezervuara.</span>
+      <span>
+        <Icon name="pin" class="icon" size="14" />
+        Rektorat, Sheshi 2 Prilli, Shkodër
+      </span>
+      <span>
+        <a href="mailto:info@unishk.edu.al">info@unishk.edu.al</a>
+      </span>
+    </div>
+  </div>
+</footer>

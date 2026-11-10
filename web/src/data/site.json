@@ -1,0 +1,450 @@
+{
+ "name": "Universiteti i Shkodrës \"Luigj Gurakuqi\"",
+ "shortName": "UNISHK",
+ "hero": "/fileadmin/user_upload/2026/unishk-web.jpg.jpeg",
+ "nav": [
+  {
+   "label": "Universiteti",
+   "href": "/universiteti/vizioni-dhe-misioni",
+   "children": [
+    {
+     "label": "Vizioni dhe Misioni",
+     "href": "/universiteti/vizioni-dhe-misioni"
+    },
+    {
+     "label": "Fakultetet",
+     "href": "/universiteti-luigj-gurakuqi/fakultetet"
+    },
+    {
+     "label": "Autoritetet dhe organet drejtuese",
+     "href": "/universiteti/autoritetet-dhe-organet-drejtuese"
+    },
+    {
+     "label": "Biblioteka",
+     "href": "http://bush.unishk.edu.al/"
+    },
+    {
+     "label": "Dokumente / Vendime",
+     "href": "/universiteti/vendime"
+    },
+    {
+     "label": "Zgjedhjet",
+     "href": "/universiteti/zgjedhjet"
+    },
+    {
+     "label": "Programi i Transparencës",
+     "href": "/universiteti/programi-i-transparences"
+    }
+   ]
+  },
+  {
+   "label": "Studimi në UNISHK",
+   "href": "/studimi-ne-unishk",
+   "children": [
+    {
+     "label": "Cikli i parë, Bachelor",
+     "href": "/studimi-ne-unishk/cikli-i-pare-bachelor/viti-akademik-2026-2027"
+    },
+    {
+     "label": "Cikli i dytë, Master Shkencor",
+     "href": "/studimi-ne-unishk/cikli-i-dyte-master-shkencor/viti-akademik-2026-2027"
+    },
+    {
+     "label": "Cikli i dytë, Master Profesional",
+     "href": "/studimi-ne-unishk/cikli-i-dyte-master-profesional/viti-akademik-2026-2027"
+    },
+    {
+     "label": "Program studimi me karakter profesional",
+     "href": "/studimi-ne-unishk/program-studimi-me-karakter-profesional/viti-akademik-2026-2027"
+    }
+   ]
+  },
+  {
+   "label": "Kërkimi Shkencor",
+   "href": "/kerkimi-shkencor",
+   "children": [
+    {
+     "label": "Zyra e Ekselencës",
+     "href": "/kerkimi-shkencor/zyra-e-ekselences"
+    },
+    {
+     "label": "Doktoraturat",
+     "href": "/kerkimi-shkencor/doktoraturat"
+    },
+    {
+     "label": "Buletine",
+     "href": "/kerkimi-shkencor/buletine"
+    },
+    {
+     "label": "Botime",
+     "href": "/kerkimi-shkencor/botime"
+    },
+    {
+     "label": "Konferenca",
+     "href": "/kerkimi-shkencor/konferenca"
+    },
+    {
+     "label": "Projekte",
+     "href": "/kerkimi-shkencor/projekte"
+    }
+   ]
+  },
+  {
+   "label": "Studentët",
+   "href": "/studentet/keshilli-studentore",
+   "children": [
+    {
+     "label": "Udhëzues Studentor",
+     "href": "/studentet/udhezues-studentor"
+    },
+    {
+     "label": "Këshilli Studentorë",
+     "href": "/studentet/keshilli-studentore"
+    },
+    {
+     "label": "Oraret e Studimit",
+     "href": "/studentet/oraret-e-studimit"
+    },
+    {
+     "label": "Oraret e Provimeve",
+     "href": "/studentet/oraret-e-provimeve"
+    },
+    {
+     "label": "Bursat e Studimit",
+     "href": "/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/bursa"
+    },
+    {
+     "label": "Përjashtime dhe reduktime të tarifës",
+     "href": "/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/perjashtime/reduktime-te-tarifave-te-shkollimit"
+    },
+    {
+     "label": "Tarifat e Studimit",
+     "href": "/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/tarifa-shkollimi"
+    },
+    {
+     "label": "Laboratori Gjithëpërfshirës",
+     "href": "/studentet/laboratori-gjitheperfshires"
+    },
+    {
+     "label": "Alumni",
+     "href": "/studentet/alumni"
+    },
+    {
+     "label": "Karriera",
+     "href": "/studentet/karriera"
+    }
+   ]
+  },
+  {
+   "label": "Ndërkombëtarizimi",
+   "href": "/bashkepunimi-nderkombetar",
+   "children": [
+    {
+     "label": "Bashkëpunime",
+     "href": "/bashkepunimi-nderkombetar/bashkepunime"
+    },
+    {
+     "label": "Erasmus +",
+     "href": "/bashkepunimi-nderkombetar/erasmus"
+    },
+    {
+     "label": "List of courses",
+     "href": "/bashkepunimi-nderkombetar/list-of-courses"
+    },
+    {
+     "label": "Thirrjet për aplikime",
+     "href": "/bashkepunimi-nderkombetar/thirrjet-per-aplikime"
+    },
+    {
+     "label": "Rrjetet",
+     "href": "/bashkepunimi-nderkombetar/rrjetet"
+    },
+    {
+     "label": "FAQ",
+     "href": "/bashkepunimi-nderkombetar/faq"
+    }
+   ]
+  },
+  {
+   "label": "Aktivitete",
+   "href": "/aktivitete",
+   "children": []
+  },
+  {
+   "label": "Aktualitet",
+   "href": "/aktualitet",
+   "children": []
+  },
+  {
+   "label": "Njoftime",
+   "href": "/njoftime",
+   "children": [
+    {
+     "label": "Njoftime",
+     "href": "/njoftime"
+    },
+    {
+     "label": "Njoftime për punësim - Pedagog të Brëndshëm",
+     "href": "/njoftime/njoftime-per-punesim-pedagog-te-brendshem"
+    },
+    {
+     "label": "Njoftime për punësim - Pedagog të Jashtëm",
+     "href": "/njoftime/njoftime-per-punesim-pedagog-te-jashtem"
+    },
+    {
+     "label": "Njoftime për punësim - Staf jo Akademik",
+     "href": "/njoftime/njoftime-per-punesim-staf-jo-akademik"
+    }
+   ]
+  },
+  {
+   "label": "Kontakt",
+   "href": "/kontakt",
+   "children": []
+  }
+ ],
+ "utility": {
+  "student": [
+   {
+    "label": "Studenti",
+    "href": "/"
+   },
+   {
+    "label": "Sistemi i studentit",
+    "href": "https://ushk.pitagora.rash.al/login"
+   },
+   {
+    "label": "Microsoft Teams",
+    "href": "https://teams.microsoft.com/"
+   },
+   {
+    "label": "Libraria dixhitale",
+    "href": "https://ulibrary.rash.al/"
+   },
+   {
+    "label": "Biblioteka universitare",
+    "href": "http://bush.unishk.edu.al/"
+   }
+  ],
+  "staff": [
+   {
+    "label": "Stafi",
+    "href": "/"
+   },
+   {
+    "label": "Sistemi i pedagogut",
+    "href": "https://ushk.pitagora.rash.al/login"
+   },
+   {
+    "label": "Microsoft Teams",
+    "href": "https://teams.microsoft.com/"
+   },
+   {
+    "label": "Libraria dixhitale",
+    "href": "https://ulibrary.rash.al/"
+   },
+   {
+    "label": "Biblioteka universitare",
+    "href": "http://bush.unishk.edu.al/"
+   },
+   {
+    "label": "SMAK",
+    "href": "https://smak.unishk.edu.al/home"
+   }
+  ],
+  "social": [
+   {
+    "label": "Facebook",
+    "href": "https://www.facebook.com/Universiteti.Shkoder.Luigj.Gurakuqi",
+    "icon": "facebook"
+   },
+   {
+    "label": "Instagram",
+    "href": "https://www.instagram.com/universiteti.luigj.gurakuqi/",
+    "icon": "instagram"
+   },
+   {
+    "label": "LinkedIn",
+    "href": "https://www.linkedin.com/in/universiteti-i-shkodr%C3%ABs-luigj-gurakuqi-459933173/",
+    "icon": "linkedin"
+   },
+   {
+    "label": "Email",
+    "href": "https://outlook.office.com/mail/",
+    "icon": "mail"
+   }
+  ]
+ },
+ "news": [
+  {
+   "title": "THIRRJE PËR IDE BIZNESI – Young Entrepreneurs Western Balkans (YEB)",
+   "href": "https://unishk.edu.al/njoftime/njoftimi-i-plote/thirrje-per-ide-biznesi-young-entrepreneurs-western-balkans-yeb",
+   "date": "2026-10-30",
+   "dateLabel": "30 tetor 2026"
+  },
+  {
+   "title": "LAJMËRIM PËR STUDENTËT E VITEVE TË PARA DHE TË DYTA TË NIVELIT BACHELOR PËR BURSA STUDIMI NË KUADËR TE PROJEKTIT CEEPUS PËR VITIN AKADEMIK 2026 - 2027",
+   "href": "https://unishk.edu.al/njoftime/njoftimi-i-plote/lajmerim-per-studentet-e-viteve-te-para-dhe-te-dyta-te-nivelit-bachelor-per-bursa-studimi-ne-kuader-te-projektit-ceepus-vitin-akademik-2026-2027",
+   "date": "2026-10-26",
+   "dateLabel": "26 tetor 2026"
+  },
+  {
+   "title": "Erasmus+ Training Mobility / University of Salento, Italy",
+   "href": "https://unishk.edu.al/njoftime/njoftimi-i-plote/erasmus-training-mobility-university-of-salento-italy",
+   "date": "2026-10-23",
+   "dateLabel": "23 tetor 2026"
+  },
+  {
+   "title": "Listat paraprake të fituesve, në programet e studimit të ciklit të dytë, viti akademik 2026-2027",
+   "href": "https://unishk.edu.al/njoftime/njoftimi-i-plote/listat-paraprake-te-fituesve-ne-programet-e-studimit-te-ciklit-te-dyte-viti-akademik-2026-2027",
+   "date": "2026-10-20",
+   "dateLabel": "20 tetor 2026"
+  },
+  {
+   "title": "Call for Applications: Erasmus+ Mobility Scholarships Hochschule Fulda – University of Applied Sciences & University of Shkodra “Luigj Gurakuqi”",
+   "href": "https://unishk.edu.al/njoftime/njoftimi-i-plote/call-for-applications-erasmus-mobility-scholarships-hochschule-fulda-university-of-applied-sciences-university-of-shkodra-luigj-gurakuqi",
+   "date": "2026-10-19",
+   "dateLabel": "19 tetor 2026"
+  },
+  {
+   "title": "Aplikim për reduktimin në masën 50% nga tarifa vjetore e shkollimit, të studentëve të ciklit të dytë të studimit, viti akademik 2026-2027.",
+   "href": "https://unishk.edu.al/njoftime/njoftimi-i-plote/aplikim-per-reduktimin-ne-masen-50-nga-tarifa-vjetore-e-shkollimit-te-studenteve-te-ciklit-te-dyte-te-studimit-viti-akademik-2026-2027",
+   "date": "2026-10-16",
+   "dateLabel": "16 tetor 2026"
+  }
+ ],
+ "activities": [
+  {
+   "title": "Marrëveshje bashkëpunimi mes Universitetit të Shkodrës dhe DRAP Lezhë.",
+   "href": "https://unishk.edu.al/aktivitete/aktiviteti-i-plote/marreveshje-bashkepunimi-mes-universitetit-te-shkodres-dhe-drap-lezhe",
+   "date": "2026-10-21",
+   "dateLabel": "21 tetor 2026"
+  },
+  {
+   "title": "Universiteti i Shkodrës “Luigj Gurakuqi” ishte pjesë e takimit rajonal TCA “Western Balkan in the Focus: Promoting and Deepening Cooperations in the Erasmus+ Programme”, zhvilluar më 13–15 tetor në Malin e Zi.",
+   "href": "https://unishk.edu.al/aktivitete/aktiviteti-i-plote/universiteti-i-shkodres-luigj-gurakuqi-ishte-pjese-e-takimit-rajonal-tca-western-balkan-in-the-focus-promoting-and-deepening-cooperations-in-the-erasmus-programme-zhvilluar-me-13-15-tetor-ne-malin-e-zi",
+   "date": "2026-10-19",
+   "dateLabel": "19 tetor 2026"
+  },
+  {
+   "title": "Panairi i Punës dhe Karrierës në Bashkinë Vau i Dejës.",
+   "href": "https://unishk.edu.al/aktivitete/aktiviteti-i-plote/panairi-i-punes-dhe-karrieres-ne-bashkine-vau-i-dejes",
+   "date": "2026-10-14",
+   "dateLabel": "14 tetor 2026"
+  },
+  {
+   "title": "UNISHK dhe NATGA nënshkruajnë Marrëveshje Bashkëpunimi për zhvillimin e turizmit.",
+   "href": "https://unishk.edu.al/aktivitete/aktiviteti-i-plote/unishk-dhe-natga-nenshkruajne-marreveshje-bashkepunimi-per-zhvillimin-e-turizmit",
+   "date": "2026-10-12",
+   "dateLabel": "12 tetor 2026"
+  },
+  {
+   "title": "Dita e parë e Simpoziumit Ndërkombëtar “Letërsia e huaj në Shqipërinë socialiste”",
+   "href": "https://unishk.edu.al/aktivitete/aktiviteti-i-plote/dita-e-pare-e-simpoziumit-nderkombetar-letersia-e-huaj-ne-shqiperine-socialiste",
+   "date": "2026-10-12",
+   "dateLabel": "12 tetor 2026"
+  },
+  {
+   "title": "Java e Mirëseardhjes në Fakultetin e Shkencave Shoqërore , 5–9 tetor 2026: një javë kushtuar njohjes së studentëve të rinj me jetën universitare!",
+   "href": "https://unishk.edu.al/aktivitete/aktiviteti-i-plote/java-e-mireseardhjes-ne-fakultetin-e-shkencave-shoqerore-5-9-tetor-2026-nje-jave-kushtuar-njohjes-se-studenteve-te-rinj-me-jeten-universitare",
+   "date": "2026-10-09",
+   "dateLabel": "9 tetor 2026"
+  },
+  {
+   "title": "Java Studentore – Dita e Katërt | Fakulteti i Shkencave të Edukimit",
+   "href": "https://unishk.edu.al/aktivitete/aktiviteti-i-plote/java-studentore-dita-e-katert-fakulteti-i-shkencave-te-edukimit",
+   "date": "2026-10-08",
+   "dateLabel": "8 tetor 2026"
+  },
+  {
+   "title": "Firence, një laborator i gjallë kërkimi për studentët e Gjuhës Italiane në UNISHK",
+   "href": "https://unishk.edu.al/aktivitete/aktiviteti-i-plote/firence-nje-laborator-i-gjalle-kerkimi-per-studentet-e-gjuhes-italiane-ne-unishk",
+   "date": "2026-10-06",
+   "dateLabel": "6 tetor 2026"
+  }
+ ],
+ "faculties": [
+  {
+   "name": "Fakulteti i Shkencave të Natyrës",
+   "href": "/universiteti-luigj-gurakuqi/fakultetet/fakulteti-i-shkencave-te-natyres",
+   "image": "/fileadmin/_processed_/e/5/csm_Fshn_2026_fad7c8512a.jpeg"
+  },
+  {
+   "name": "Fakulteti i Shkencave të Edukimit",
+   "href": "/universiteti-luigj-gurakuqi/fakultetet/fakulteti-i-shkencave-te-edukimit",
+   "image": "/fileadmin/_processed_/5/8/csm_fshe2026_6b4fe18504.jpeg"
+  },
+  {
+   "name": "Fakulteti i Shkencave Shoqërore",
+   "href": "/universiteti-luigj-gurakuqi/fakultetet/fakulteti-i-shkencave-te-shoqerore",
+   "image": "/fileadmin/_processed_/b/f/csm_Fshsh_2026_67a1d900e6.jpeg"
+  },
+  {
+   "name": "Fakulteti i Drejtësisë",
+   "href": "/universiteti-luigj-gurakuqi/fakultetet/fakulteti-i-drejtesise",
+   "image": "/fileadmin/_processed_/d/e/csm_FD-FE_2026_8d1fd2fa28.jpeg"
+  },
+  {
+   "name": "Fakulteti i Gjuhëve të Huaja",
+   "href": "/universiteti-luigj-gurakuqi/fakultetet/fakulteti-i-gjuheve-te-huaja",
+   "image": "/fileadmin/_processed_/1/4/csm_fgjh2026_e1e9c71ff4.jpeg"
+  },
+  {
+   "name": "Fakulteti Ekonomik",
+   "href": "/universiteti-luigj-gurakuqi/fakultetet/fakulteti-i-ekonomik",
+   "image": "/fileadmin/_processed_/d/e/csm_FD-FE_2026_f4d8aa55ff.jpeg"
+  }
+ ],
+ "stats": [
+  {
+   "value": "34993",
+   "label": "Studentë të Diplomuar Bachelor"
+  },
+  {
+   "value": "2199",
+   "label": "Studentë të Diplomuar Master Profesional"
+  },
+  {
+   "value": "1325",
+   "label": "Studentë të Diplomuar Master Shkencor"
+  },
+  {
+   "value": "13",
+   "label": "Shkolla Doktorale"
+  }
+ ],
+ "quickLinks": [
+  {
+   "label": "Pranimet e studentëve të rinj 2026-2027",
+   "href": "/universiteti/pranimet-e-studenteve-te-rinj-2026-2027"
+  },
+  {
+   "label": "Bursa",
+   "href": "/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/bursa"
+  },
+  {
+   "label": "Përjashtime reduktime të tarifave të shkollimit",
+   "href": "/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/perjashtime/reduktime-te-tarifave-te-shkollimit"
+  },
+  {
+   "label": "Kurset e gjuhës shqipe dhe Certifikimi i saj",
+   "href": "/universiteti-luigj-gurakuqi/fakultetet/fakulteti-i-shkencave-te-shoqerore/kurset-e-gjuhes-shqipe"
+  },
+  {
+   "label": "Dokumente / Vendime",
+   "href": "/universiteti/vendime"
+  },
+  {
+   "label": "Fatura arkëtimi për tarifat vjetore",
+   "href": "/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/tarifa-shkollimi"
+  },
+  {
+   "label": "Fatura për shërbime të ndryshme në USH",
+   "href": "/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/fatura-per-sherbime-te-ndryshme"
+  }
+ ],
+ "rector": {
+  "text": "Të nderuar kolegë, Të dashur studentë, Të nderuar punonjës të administratës, Të nderuar qytetarë, Marrja e detyrës së Rektores së Universitetit të Shkodrës “Luigj Gurakuqi” përbën për mua një nder të veçantë, por mbi të gjitha një përgjegjësi të madhe ndaj këtij institucioni, komunitetit akademik, studentëve dhe qytetit tonë.",
+  "href": "/universiteti/autoritetet-dhe-organet-drejtuese/rektori/pershendetja-e-rektorit"
+ }
+}

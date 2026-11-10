@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro'
+import Icon from '../components/Icon.astro'
+import site from '../data/site.json'
+
+const quickActions = [
+  { icon: 'cap', label: 'Pranimet 2026–2027', hint: 'Regjistrimi i studentëve të rinj', href: '/universiteti/pranimet-e-studenteve-te-rinj-2026-2027' },
+  { icon: 'clock', label: 'Oraret e studimit', hint: 'Orari mësimor i fakulteteve', href: '/studentet/oraret-e-studimit' },
+  { icon: 'wallet', label: 'Bursat e studimit', hint: 'Kriteret dhe aplikimi', href: '/universiteti/autoritetet-dhe-organet-drejtuese/rektorati/drejtoria-e-finances-dhe-buxhetit/bursa' },
+  { icon: 'book', label: 'Sistemi i studentit', hint: 'Pitagora — login', href: 'https://ushk.pitagora.rash.al/login' },
+]
+
+const external = (href) => /^https?:/.test(href)
+const rectorText = site.rector.text.split(/(?<=\.)\s/).slice(0, 2).join(' ')
+---
+<Base description="Universiteti i Shkodrës “Luigj Gurakuqi”: gjashtë fakultete, programe bachelor, master dhe doktoraturë, kërkim shkencor dhe shërbime për studentët.">
+  <section class="hero">
+    <div class="hero__media">
+      <img
+        src="/img/hero-1334.jpeg"
+        srcset="/img/hero-600.jpeg 600w, /img/hero-1000.jpeg 1000w, /img/hero-1334.jpeg 1334w, /img/hero-1601.jpeg 1601w"
+        sizes="100vw"
+        alt=""
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+    <div class="container hero__inner">
+      <p class="hero__eyebrow">Shkodër · Që nga viti 1957</p>
+      <h1 class="hero__title">Dije që ndërtojnë të ardhmen e veriut.</h1>
+      <p class="hero__lede">
+        Universiteti i Shkodrës “Luigj Gurakuqi” ofron programe studimi në tre cikle,
+        kërkim shkencor dhe bashkëpunim ndërkombëtar në zemër të qytetit.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--light" href="/universiteti/pranimet-e-studenteve-te-rinj-2026-2027">Pranimet 2026–2027</a>
+        <a class="btn btn--onbrand" href="/studimi-ne-unishk">Programet e studimit</a>
+      </div>
+    </div>
+    <ul class="container hero__facts">
+      <li><b>6</b><span>fakultete</span></li>
+      <li><b>3</b><span>cikle studimi</span></li>
+      <li><b>68</b><span>vite histori</span></li>
+      <li><b>30+</b><span>programe studimi</span></li>
+    </ul>
+  </section>
+
+  <div class="container">
+    <div class="quicklinks">
+      {quickActions.map((a) => (
+        <a class="quicklink" href={a.href} {...(external(a.href) ? { target: '_blank', rel: 'noopener' } : {})}>
+          <span class="quicklink__icon"><Icon name={a.icon} /></span>
+          <span class="quicklink__label">
+            <strong>{a.label}</strong>
+            <span>{a.hint}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-head__eyebrow">Aktualitet</span>
+          <h2>Njoftime</h2>
+        </div>
+        <a class="section-head__link" href="/njoftime">Të gjitha njoftimet</a>
+      </div>
+      <div class="news-grid">
+        {site.news.map((n) => (
+          <a class="news-card" href={n.href} {...(external(n.href) ? { target: '_blank', rel: 'noopener' } : {})}>
+            <time datetime={n.date}>{n.dateLabel}</time>
+            <span class="news-card__title">{n.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-head__eyebrow">Njësitë akademike</span>
+          <h2>Fakultetet</h2>
+        </div>
+        <a class="section-head__link" href="/universiteti-luigj-gurakuqi/fakultetet">Shiko të gjitha</a>
+      </div>
+      <div class="faculty-grid">
+        {site.faculties.map((f) => (
+          <a class="faculty-card" href={f.href}>
+            {f.image && <img src={f.image} alt="" loading="lazy" decoding="async" />}
+            <h3>{f.name}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-band">
+    <div class="container">
+      <div class="stats-band__head">
+        <h2>Universiteti në shifra</h2>
+        <p>Të dhëna të grumbulluara nga dosjet akademike të universitetit.</p>
+      </div>
+      <ul class="stats">
+        {site.stats.map((s) => (
+          <li class="stat">
+            <b data-count={s.value}>{s.value}</b>
+            <span set:html={s.label} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="section-head__eyebrow">Jeta kampusit</span>
+          <h2>Aktivitete</h2>
+        </div>
+        <a class="section-head__link" href="/aktivitete">Të gjitha aktivitetet</a>
+      </div>
+      <div class="news-grid">
+        {site.activities.slice(0, 6).map((a) => (
+          <a class="news-card" href={a.href} {...(external(a.href) ? { target: '_blank', rel: 'noopener' } : {})}>
+            <time datetime={a.date}>{a.dateLabel}</time>
+            <span class="news-card__title">{a.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="page-layout page-layout--aside">
+        <div class="stack">
+          <span class="tag">Përshëndetja e rektorit</span>
+          <h2>Një universitet i hapur për qytetin dhe rajonin</h2>
+          <p style="max-width: 58ch; color: var(--muted);">{rectorText}</p>
+          <div class="cluster">
+            <a class="btn" href={site.rector.href}>Lexo më shumë</a>
+            <a class="btn btn--ghost" href="/universiteti/autoritetet-dhe-organet-drejtuese">Autoritetet drejtuese</a>
+          </div>
+        </div>
+        <aside class="page-aside">
+          <div class="aside-card">
+            <h2>Lidhje të shpejta</h2>
+            <ul class="aside-nav">
+              {site.quickLinks.slice(0, 7).map((l) => (
+                <li><a href={l.href} {...(external(l.href) ? { target: '_blank', rel: 'noopener' } : {})}>{l.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container cta-band__inner">
+      <div>
+        <h2>Gati për të nisur studimet në UNISHK?</h2>
+        <p>Shiko programet, kriteret e pranimit dhe tarifat për vitin akademik 2026–2027.</p>
+      </div>
+      <div class="cluster">
+        <a class="btn btn--light" href="/universiteti/pranimet-e-studenteve-te-rinj-2026-2027">Apliko tani</a>
+        <a class="btn btn--onbrand" href="/kontakt">Na kontakto</a>
+      </div>
+    </div>
+  </section>
+</Base>
