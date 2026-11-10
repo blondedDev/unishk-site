@@ -173,6 +173,22 @@ const fullTitle = title ? `${title} — UNISHK` : 'Universiteti i Shkodrës “L
         ).observe(footer)
       }
 
+      /* prototype forms: validate, but do not pretend to send ---------- */
+      document.querySelectorAll('form[data-prototype]').forEach((form) => {
+        form.addEventListener('submit', (event) => {
+          event.preventDefault()
+          const actions = form.querySelector('.form-actions') || form
+          let status = form.querySelector('.form-status')
+          if (!status) {
+            status = document.createElement('p')
+            status.className = 'form-status'
+            status.setAttribute('role', 'status')
+            actions.append(status)
+          }
+          status.textContent = 'Faleminderit! Ky është një prototip dhe nuk dërgon të dhëna.'
+        })
+      })
+
       /* number counters ------------------------------------------------ */
       const counters = document.querySelectorAll('[data-count]')
       if (counters.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {

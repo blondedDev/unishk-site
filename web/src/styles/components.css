@@ -814,6 +814,71 @@
 .prose tbody tr:last-child td { border-bottom: 0; }
 .prose tbody tr:hover { background: color-mix(in srgb, var(--brand-500) 5%, transparent); }
 
+/* forms ------------------------------------------------------------------ */
+.prose .form-note {
+  padding: 0.8rem 1rem;
+  border-inline-start: 3px solid var(--accent-500);
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  background: var(--surface-3);
+  color: var(--muted);
+  font-size: var(--step--1);
+  line-height: 1.55;
+}
+.prose form { display: grid; gap: var(--space-s); max-width: 46rem; }
+.prose fieldset {
+  margin: 0;
+  padding: clamp(1.1rem, 3vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  background: var(--card);
+  box-shadow: var(--shadow-1);
+}
+
+.field-grid {
+  display: grid;
+  gap: var(--space-s) var(--space-m);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+.field { display: grid; gap: 0.4rem; align-content: start; min-width: 0; }
+.field--wide { grid-column: 1 / -1; }
+.field > label { font-size: var(--step--1); font-weight: 650; color: var(--heading); }
+
+.prose .field input,
+.prose .field select,
+.prose .field textarea {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  color: var(--heading);
+  font-size: var(--step-0);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.prose .field textarea { min-height: 8.5rem; resize: vertical; line-height: 1.6; }
+.prose .field select {
+  appearance: none;
+  padding-inline-end: 2.3rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b6b79' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 1rem;
+  cursor: pointer;
+}
+.prose .field input:focus,
+.prose .field select:focus,
+.prose .field textarea:focus {
+  outline: none;
+  border-color: var(--accent-500);
+  box-shadow: var(--ring);
+}
+.prose .field input:user-invalid,
+.prose .field textarea:user-invalid { border-color: var(--danger); }
+
+.form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-block-start: var(--space-m); }
+.form-status { margin: 0; font-size: var(--step--1); font-weight: 600; color: var(--accent-600); }
+
 /* details / accordions -------------------------------------------------- */
 .prose .disclosure {
   border: 1px solid var(--line);

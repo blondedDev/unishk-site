@@ -134,6 +134,13 @@ const KEEP_ATTRS = {
   th: ['colspan', 'rowspan', 'scope'],
   div: ['class'],
   details: ['class', 'open'],
+  form: ['class', 'action', 'method', 'novalidate'],
+  fieldset: ['class'],
+  legend: ['class'],
+  label: ['for', 'class'],
+  input: ['type', 'name', 'value', 'placeholder', 'required', 'autocomplete', 'inputmode', 'class'],
+  select: ['name', 'required', 'class'],
+  textarea: ['name', 'rows', 'placeholder', 'required', 'class'],
   nav: ['class', 'aria-label'],
   article: ['class'],
   span: ['class', 'aria-current'],
@@ -339,6 +346,54 @@ function sanitize($, ctx) {
   // unwrap structural leftovers: classless divs/spans carry nothing but nesting
   $('div:not([class]), span:not([class]), center').each((_, el) => {
     $(el).replaceWith($(el).contents())
+  })
+
+  // powermail forms: TYPO3 plugin state, honeypots and inline label/input soup
+  // become a plain, styleable form
+  $('form').each((_, el) => {
+    const form = $(el)
+    form.find('input[type="hidden"], input[name*="__hp"]').remove()
+    form.find('label[for^="powermail_hp_"]').remove()
+    form.find('h4').filter((__, h) => clean($(h).text()) === 'Ankesa').remove()
+
+    form.removeAttr('action')
+    form.removeAttr('method')
+
+    const fieldset = form.find('fieldset').first()
+    if (!fieldset.length) return
+    fieldset.find('legend').first().remove()
+
+    const submit = fieldset.find('input[type="submit"], button[type="submit"]').first()
+    submit.addClass('btn')
+    submit.remove()
+
+    const grid = $('<div class="field-grid"></div>')
+    let field = null
+    fieldset.contents().each((__, node) => {
+      const c = $(node)
+      if (c.is('label')) {
+        field = $('<div class="field"></div>')
+        field.append(c)
+        grid.append(field)
+        return
+      }
+      if (c.is('input, select, textarea')) {
+        if (!field) { field = $('<div class="field"></div>'); grid.append(field) }
+        if (c.is('textarea')) field.addClass('field--wide')
+        field.append(c)
+        field = null
+      }
+    })
+
+    fieldset.empty().append(grid)
+    if (submit.length) fieldset.append($('<div class="form-actions"></div>').append(submit))
+
+    // nothing can be posted from a static site: say so instead of failing silently
+    form.attr('data-prototype', '')
+    form.prepend(
+      '<p class="form-note">Ky është një prototip — formulari nuk dërgon të dhëna. ' +
+      'Për ankesa zyrtare shkruani në <a href="mailto:info@unishk.edu.al">info@unishk.edu.al</a>.</p>',
+    )
   })
 
   // comments, empty wrappers, whitespace noise

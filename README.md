@@ -115,3 +115,9 @@ code, no database and no build step required on their side.
   separate tree that was not mirrored).
 - Article pages, documents and image-heavy galleries link to the live site.
 - Search indexes titles and body text of the 191 rebuilt pages only.
+- **The complaint form (Ankesa) is not wired to a backend.** It is rebuilt as a
+  normal, validated form, but a static site cannot mail anything, so submitting
+  it shows a notice instead of failing silently. Point the `<form>` at the
+  university's real handler (TYPO3 powermail or an SMTP relay) when it goes
+  live, and drop the `data-prototype` attribute — the notice and the submit
+  interception are keyed off it.
