@@ -1024,28 +1024,14 @@
 }
 .footer-social a:hover { background: rgb(255 255 255 / 0.12); border-color: transparent; }
 
-.site-footer__credit {
-  margin: 0;
-  padding-block: 1.1rem 0;
-  border-top: 1px solid rgb(255 255 255 / 0.12);
-  font-size: 0.78rem;
-  color: rgb(255 255 255 / 0.55);
-}
-.site-footer__credit a {
-  color: rgb(255 255 255 / 0.82);
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-  text-decoration-color: rgb(255 255 255 / 0.3);
-}
-.site-footer__credit a:hover { color: #fff; text-decoration-color: currentColor; }
-
 .site-footer__bottom {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem var(--space-m);
   align-items: center;
   justify-content: space-between;
-  padding-block: 0.9rem 1.1rem;
+  padding-block: 1.1rem;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
   font-size: 0.78rem;
   color: rgb(255 255 255 / 0.55);
 }

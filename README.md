@@ -115,8 +115,3 @@ code, no database and no build step required on their side.
   separate tree that was not mirrored).
 - Article pages, documents and image-heavy galleries link to the live site.
 - Search indexes titles and body text of the 191 rebuilt pages only.
-
-## Credits
-
-Design and rebuild: **Ardison Syla** — [sonisyla.com](https://sonisyla.com).
-Content, images and brand identity belong to Universiteti i Shkodrës “Luigj Gurakuqi”.
